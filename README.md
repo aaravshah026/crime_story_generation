@@ -9,4 +9,4 @@ Welcome to Group Hot Dogs' story generation project!
 
 ## Architecture Diagram
 
-![Architecture Diagram](phase1diagram.png)
+![Architecture Diagram](images/phase1diagram.png)
