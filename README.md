@@ -10,3 +10,8 @@ Welcome to Group Hot Dogs' story generation project!
 ## Architecture Diagram
 
 <img width="960" height="720" alt="Image" src="https://github.com/user-attachments/assets/13114b91-1349-47ce-822d-9a287e9c853d" />
+
+## Videos
+### Proposal Video
+https://youtu.be/C6L9NY5Koi8
+### Phase 1 Final Video
