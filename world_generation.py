@@ -1,8 +1,10 @@
 from openai import OpenAI
-client = OpenAI(api_key="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")
 
 class World:
-    def __init__(self):
+    def __init__(self, api_key):
+        # OpenAI Model
+        self.client = OpenAI(api_key=api_key)
+
         # creates the name for the protagonist
         self.detective = self.generate_detective()
 
@@ -14,10 +16,13 @@ class World:
 
         # creates a list of clues at the crime scene for the detective to use to catch the kidnapper
         self.clues = self.generate_clues()
+
+        # decides the perpetrator, along with their actions that led them to commit the kidnapping
+        self.perpetrator = self.generate_perpetrator()
     
     # function that generates the name of the detective (protagonist).
     def generate_detective(self):
-        response = client.responses.create(
+        response = self.client.responses.create(
             model="gpt-5-nano",
             input=[
                 {
@@ -30,11 +35,11 @@ class World:
                 }
             ]
         )
-        return response.output[1].content[0].text
+        return response.output_text
 
     # function that generates the kidnapping victim and their backstory.
     def generate_victim(self):
-        response = client.responses.create(
+        response = self.client.responses.create(
             model="gpt-5-nano",
             input=[
                 {
@@ -47,11 +52,11 @@ class World:
                 }
             ]
         )
-        return response.output[1].content[0].text
+        return response.output_text
 
     # function that generates four suspects and their backstories, along with why they are connected to the victim, their motivation, and their alibis.
     def generate_suspects(self):
-        response1 = client.responses.create(
+        response1 = self.client.responses.create(
             model="gpt-5-nano",
             input=[
                 {
@@ -64,8 +69,8 @@ class World:
                 }
             ]
         )
-        names = response1.output[1].content[0].text
-        response2 = client.responses.create(
+        names = response1.output_text
+        response2 = self.client.responses.create(
             model="gpt-5-nano",
             input=[
                 {
@@ -82,10 +87,11 @@ class World:
                 }
             ]
         )
-        return response2.output[1].content[0].text
+        return response2.output_text
     
+    # function that generates 5 or more clues at the crime scene.
     def generate_clues(self):
-        response = client.responses.create(
+        response = self.client.responses.create(
             model="gpt-5-nano",
             input=[
                 {
@@ -102,10 +108,26 @@ class World:
                 }
             ]
         )
-        return response.output[1].content[0].text
+        return response.output_text
     
-x = World()
-print(x.detective)
-print(x.victim)
-print(x.suspects)
-print(x.clues)
+    # function that decides the perpetrator, along with what actually happened when the crime took place.
+    def generate_perpetrator(self):
+        response = self.client.responses.create(
+            model="gpt-5-nano",
+            input=[
+                {
+                    "role": "system",
+                    "content": "You are generating a story for a hostage kidnapping mystery with a 24 hour countdown. Preliminary instructions to obey for the entire conversation, without fail: - do not include lengthy explanations unless otherwise asked for - no expressing your emotions, keep the conversation factual and concise."
+                },
+                {
+                    "role": "user",
+                    "content": f"The victim's name and backstory are {self.victim}. The suspects names and backstories are {self.suspects}. The clues at the crime scene are {self.clues}."
+                },
+                {
+                    "role": "user",
+                    "content": "Decide who committed the crime from the suspects, along with what actually happened at the crime scene. Only pick one person."
+                }
+            ]
+        )
+        return response.output_text
+    
