@@ -32,7 +32,7 @@ class WorldModel():
                 },
                 {
                     "role": "user",
-                    "content": f"We are currently at plot point {current_iteration} out of {total_iterations}. Generate a new plot event for the story. Keep in mind that we need three red herrings (we have {self.red_herrings}) and we need a kidnapper interference event (currently {self.kie})."
+                    "content": f"We are currently at plot point {current_iteration} out of {total_iterations}. Make sure that the story is complete by the end of the last iteration. Generate a new plot event for the story. Keep in mind that we need three red herrings (we have {self.red_herrings}) and we need a kidnapper interference event (currently {self.kie})."
                 }
             ]
         )
