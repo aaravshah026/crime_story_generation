@@ -10,13 +10,13 @@ Welcome to Group Hot Dogs' story generation project.
 pip install -r requirements.txt
 ```
 
-2. To run the original story generator:
+2. To run the original story generator (typical runtime - 20 minutes):
 
 ```bash
 python3 story_generation.py
 ```
 
-3. To run the Phase II interactive text game:
+3. To run the Phase II interactive text game (typical runtime - 1-5 minutes):
 
 ```bash
 python3 phase2_game.py
