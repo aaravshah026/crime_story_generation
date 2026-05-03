@@ -97,6 +97,11 @@ DRAMA MANAGER ACTION: classifies the action as constituent and completes the res
 
 ### Walkthrough 2: Exceptional Action
 
+USER ACTION: destroy the usb evidence
+DRAMA MANAGER ACTION: Accommodation. That action would break an active story condition, so the drama manager blocks it and redirects you toward Convention Center Alley.
+
+### Walkthrough 3: AI System Responding to the Player to Change the Story (Template 1)
+
 USER ACTION: open fire stair door  
 DRAMA MANAGER ACTION: classifies the action as exceptional. This was the trap Aria warned about, so the story fails.
 
