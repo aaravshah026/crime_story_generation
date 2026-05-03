@@ -28,6 +28,12 @@ python3 phase2_game.py
 python3 phase2_game.py --demo
 ```
 
+5. To make a different generated story interactive, pass in a story text file. This uses the OpenAI API to extract interactive plot points and classify player actions:
+
+```bash
+python3 phase2_game.py --story exemplar_story_1.txt
+```
+
 Note: if the API key does not work, replace the key in `story_generation.py` with your own key.
 
 ## Documentation
@@ -58,14 +64,16 @@ When an exceptional action happens, the drama manager either blocks the action a
 - `world_generation.py`: creates the detective, victim, suspects, clues, and perpetrator
 - `world_model.py`: generates plot events and checks consistency
 - `story_model.py`: stores generated events and retells the final story
-- `phase2_game.py`: playable Phase II text game and drama manager
+- `phase2_game.py`: playable Phase II text game and drama manager. It can use the LLM to convert a story text file into interactive plot points.
 - `exemplar_story_1.txt` and `exemplar_story_2.txt`: generated example stories used for testing and demonstration
 
 ### Runtime And Cost
 
 The original story generator usually takes 10-20 minutes because it calls the OpenAI API many times. It may cost money depending on the API account and model pricing.
 
-The Phase II game runs immediately. The `--demo` mode does not call the API, so it has no API cost.
+The Phase II demo runs immediately. The `--demo` mode does not call the API, so it has no API cost.
+
+Running `phase2_game.py --story some_story.txt` calls the OpenAI API to build interactive plot points from that story and to classify user actions during play. This adds API cost, but it allows the Phase II layer to work on a newly generated story instead of only one hardcoded story.
 
 ### Walkthrough 1: Successful Run
 
@@ -101,5 +109,3 @@ DRAMA MANAGER ACTION: classifies the action as exceptional. This was the trap Ar
 ### Proposal Video
 
 https://youtu.be/C6L9NY5Koi8
-
-### Phase 1 Final Video
